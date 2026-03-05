@@ -1,0 +1,76 @@
+Fluxo de Atendimento do Bot – B4 Criação de Sites
+
+Mensagem 1 – resposta imediata (dependendo do horário)
+
+O bot deve identificar o horário.
+
+Manhã
+
+Olá, bom dia. Recebemos a sua solicitação de criação de site enviada pelo formulário. Obrigado pelas informações.
+
+Tarde
+
+Olá, boa tarde. Recebemos a sua solicitação de criação de site enviada pelo formulário. Obrigado pelas informações.
+
+Noite
+
+Olá, boa noite. Recebemos a sua solicitação de criação de site enviada pelo formulário. Obrigado pelas informações.
+
+
+Mensagem 2 – confirmação do processo
+
+Enviar logo depois.
+
+Já iniciamos a análise do seu pedido com base nas informações que você enviou no formulário.
+
+Para criar um site que realmente represente bem a sua empresa, precisamos apenas de alguns detalhes extras sobre o projeto.
+
+
+Mensagem 3 – formulário estratégico
+
+Por isso, pedimos que você preencha este formulário rápido com algumas preferências de estilo e informações adicionais do seu negócio.
+
+https://docs.google.com/forms/d/e/1FAIpQLSeabgud9fUngJkGa0sMqoCq7bobsaNmrSAsWfv5Y9aM52TAWQ/viewform?usp=header
+
+
+Mensagem 4 – reforço
+
+Essas informações ajudam nossa equipe de criação a desenvolver um site mais alinhado com a identidade da sua empresa.
+
+Assim que você finalizar o formulário, é só avisar aqui.
+
+
+Mensagem 5 – quando o cliente responder “pronto”
+
+Se o cliente disser “já preenchi” ou algo parecido:
+
+Perfeito. Recebemos as informações.
+
+A equipe de criação agora vai organizar a estrutura inicial do seu site com base nos dados enviados.
+
+Em breve retornaremos com os próximos passos.
+
+
+Comportamento do bot
+
+O bot deve:
+
+responder de forma simples
+
+não usar emojis
+
+não falar demais
+
+manter tom profissional
+
+evitar parecer automático
+
+Se o cliente fizer perguntas específicas (preço, prazo, etc.), o bot pode responder:
+
+Prazo
+
+O prazo médio de criação costuma variar entre alguns dias dependendo da estrutura do site e das informações enviadas.
+
+Sobre alterações
+
+Caso você queira adicionar alguma informação ou detalhe para o site, pode enviar aqui mesmo.

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZapFlow</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <div class="logo">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+        </svg>
+        <span>ZapFlow</span>
+      </div>
+      <ul class="nav-links">
+        <li class="nav-item active" data-target="metrics">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13h2.25l2.25-9 3 18 2.25-9H21" />
+          </svg>
+          Dashboard
+        </li>
+        <li class="nav-item" data-target="documents">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+          </svg>
+          Documents
+        </li>
+        <li class="nav-item" data-target="bots">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z" />
+          </svg>
+          Robots
+        </li>
+        <li class="nav-item" data-target="devices">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+          </svg>
+          Devices
+        </li>
+        <li class="nav-item" data-target="integrations">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+          </svg>
+          Integrations
+        </li>
+        <li class="nav-item" data-target="settings">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          Settings
+        </li>
+      </ul>
+      <div class="nav-item nav-logout">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+        </svg>
+        Logout
+      </div>
+    </nav>
+    <main class="content">
+
+      <!-- Dashboard / Metrics Tab -->
+      <section id="metrics" class="tab-pane active">
+        <div class="header">
+          <h1>Dashboard</h1>
+          <p>Overview of your system performance</p>
+        </div>
+        <div class="cards-grid" id="metrics-container">
+          <div class="card">
+            <h3>Conversations</h3>
+            <div class="value" id="metric-convos">0</div>
+            <p class="text-muted mt-2" style="font-size: 13px;">No data available yet</p>
+          </div>
+          <div class="card">
+            <h3>Revenue</h3>
+            <div class="value" id="metric-revenue">$0</div>
+            <p class="text-muted mt-2" style="font-size: 13px;">No data available yet</p>
+          </div>
+          <div class="card">
+            <h3>Started Sales</h3>
+            <div class="value" id="metric-started-sales">0</div>
+            <p class="text-muted mt-2" style="font-size: 13px;">No data available yet</p>
+          </div>
+          <div class="card">
+            <h3>Completed Sales</h3>
+            <div class="value" id="metric-completed-sales">0</div>
+            <p class="text-muted mt-2" style="font-size: 13px;">No data available yet</p>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <div class="chart-header">
+            <h2 style="font-size: 18px; font-weight: 600;">Started vs Completed Sales</h2>
+            <select id="chart-filter" style="width: 120px;">
+              <option value="7">7 days</option>
+              <option value="30">30 days</option>
+              <option value="90">90 days</option>
+            </select>
+          </div>
+          <div class="chart-placeholder">
+            Chart data will appear here
+          </div>
+        </div>
+      </section>
+
+      <!-- Documents Tab -->
+      <section id="documents" class="tab-pane">
+        <div class="header flex-between">
+          <div>
+            <h1>Documents</h1>
+            <p>Manage your knowledge bases and resources</p>
+          </div>
+          <div class="gap-2">
+            <button class="btn btn-secondary">Filter</button>
+            <button class="btn btn-primary" onclick="document.getElementById('doc-file').click()">Import
+              Document</button>
+            <form id="upload-form" style="display:none;">
+              <input type="file" id="doc-file" accept=".pdf,.txt"
+                onchange="document.getElementById('upload-submit').click()">
+              <button type="submit" id="upload-submit"></button>
+            </form>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="search-input-wrapper">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+            <input type="text" placeholder="Search documents...">
+          </div>
+        </div>
+
+        <div class="list-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Characters</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="docs-list">
+              <!-- Filled via JS -->
+            </tbody>
+          </table>
+          <div class="pagination">
+            <div class="pagination-info">Showing 1 to 10 of 25 results</div>
+            <div class="pagination-controls gap-2">
+              <button class="btn btn-secondary">Previous</button>
+              <button class="btn btn-secondary">Next</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Robots Tab -->
+      <section id="bots" class="tab-pane">
+        <div id="bots-list-view">
+          <div class="header flex-between">
+            <div>
+              <h1>Robots</h1>
+              <p>Manage your automated responders</p>
+            </div>
+            <div class="gap-2">
+              <button class="btn btn-secondary">Filter</button>
+              <button class="btn btn-secondary">Import JSON</button>
+              <button class="btn btn-primary" id="btn-new-bot">Create New Robot</button>
+            </div>
+          </div>
+
+          <div class="list-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Description</th>
+                  <th>Published</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="bots-table-body">
+                <!-- Filled via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="bot-edit-view" class="hidden">
+          <div class="header flex-between">
+            <div>
+              <h1 id="bot-form-title">Create Robot</h1>
+            </div>
+            <button class="btn btn-secondary" id="btn-back-bots">Back to Robots</button>
+          </div>
+          <div class="bot-tabs">
+            <button class="bot-tab active" data-target="bot-details">Details</button>
+            <button class="bot-tab" data-target="bot-instructions">Instructions</button>
+            <button class="bot-tab" data-target="bot-docs">Documents</button>
+            <button class="bot-tab" data-target="bot-qa">Q&A</button>
+            <button class="bot-tab" data-target="bot-integrations">Integrations</button>
+            <button class="bot-tab" data-target="bot-chat">Chat</button>
+          </div>
+
+          <div class="card bot-form-container border-0">
+            <form id="bot-form">
+              <!-- Details -->
+              <div id="bot-details" class="bot-section active">
+                <input type="hidden" id="bot-id">
+                <div class="form-group">
+                  <label>Bot Name</label>
+                  <input type="text" id="bot-name" required>
+                </div>
+                <div class="form-group">
+                  <label>Identification Name</label>
+                  <input type="text" id="bot-idname" required>
+                </div>
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea id="bot-desc" rows="3"></textarea>
+                </div>
+                <div class="form-group toggle-group">
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="bot-human">
+                    <span class="slider"></span>
+                  </label>
+                  <span>Allow human takeover (Stop responding when client asks for human support)</span>
+                </div>
+                <div class="form-group toggle-group">
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="bot-split">
+                    <span class="slider"></span>
+                  </label>
+                  <span>Break messages into smaller parts</span>
+                </div>
+                <div class="form-group toggle-group">
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="bot-active" checked>
+                    <span class="slider"></span>
+                  </label>
+                  <span>Active Bot</span>
+                </div>
+              </div>
+
+              <!-- Instructions -->
+              <div id="bot-instructions" class="bot-section">
+                <div class="form-group">
+                  <label>Bot Prompt / Instructions</label>
+                  <textarea id="bot-prompt" rows="10"
+                    placeholder="Enter instructions here. If no Q&A matches, the bot will fall back to using this context."></textarea>
+                </div>
+              </div>
+
+              <!-- Q&A -->
+              <div id="bot-qa" class="bot-section">
+                <div class="qa-form">
+                  <div class="form-group">
+                    <input type="text" id="qa-question" placeholder="Question (e.g. price)">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="qa-answer" placeholder="Answer (e.g. Our websites start at R$200)">
+                  </div>
+                  <button type="button" class="btn btn-secondary w-full" id="btn-add-qa">Add Q&A</button>
+                </div>
+                <div class="list-container mt-4">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Question</th>
+                        <th>Answer</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="qa-list"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Documents -->
+              <div id="bot-docs" class="bot-section">
+                <p class="text-muted mb-4">Attach documents to form the knowledge base.</p>
+                <div id="bot-docs-select-list">
+                  <!-- Filled via JS checkboxes -->
+                </div>
+              </div>
+
+              <!-- Integrations -->
+              <div id="bot-integrations" class="bot-section">
+                <p class="text-muted mb-4">Configure Webhooks or External API accesses.</p>
+                <div class="card text-center" style="padding:40px; border-style:dashed;">
+                  <p>Integrations are not available yet. This feature will be released soon.</p>
+                </div>
+              </div>
+
+              <!-- Chat Preview -->
+              <div id="bot-chat" class="bot-section">
+                <p class="text-muted mb-4">Test your robot responses in real-time.</p>
+                <div class="card text-center" style="padding:40px; border-style:dashed;">
+                  <p>Chat Sandbox Coming Soon</p>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="btn-save-bot">Save Bot</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Devices Tab -->
+      <section id="devices" class="tab-pane">
+        <div class="header flex-between">
+          <div>
+            <h1>Devices</h1>
+            <p>Manage connected WhatsApp numbers</p>
+          </div>
+          <button class="btn btn-primary" id="btn-connect-device">Connect Device</button>
+        </div>
+
+        <div class="list-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Device</th>
+                <th>Phone Number</th>
+                <th>Status</th>
+                <th>Last Activity</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Main WhatsApp API</td>
+                <td><span class="text-muted">Loading...</span></td>
+                <td><span class="status-badge" id="device-status">Loading</span></td>
+                <td>Just now</td>
+                <td>
+                  <button class="btn btn-secondary" id="btn-show-qr">Show QR</button>
+                  <button class="btn btn-secondary" id="btn-reconnect">Reconnect</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="qr-modal" class="hidden mt-4">
+          <div class="card text-center device-card">
+            <h3>Scan to Connect</h3>
+            <div class="qr-container" id="qr-container">
+              <div class="placeholder">Loading QR Code...</div>
+              <img id="qr-image" style="display:none;" />
+            </div>
+            <button class="btn btn-secondary mt-4 w-full" id="btn-close-qr">Close</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Integrations Tab -->
+      <section id="integrations" class="tab-pane">
+        <div class="header">
+          <h1>Integrations</h1>
+          <p>Connect ZapFlow with your favorite tools</p>
+        </div>
+        <div class="card mb-4" style="background: rgba(59, 130, 246, 0.1); border-color: var(--primary);">
+          <p style="color: #fff; font-weight:500;">Integrations are not available yet. This feature will be released
+            soon.</p>
+        </div>
+        <div class="cards-grid">
+          <div class="card text-center">
+            <h3 style="color:#fff; font-size:16px;">WhatsApp API</h3>
+            <p class="text-muted mb-4 mt-2">Official Meta Graph API setup</p>
+            <button class="btn btn-secondary w-full">Coming Soon</button>
+          </div>
+          <div class="card text-center">
+            <h3 style="color:#fff; font-size:16px;">Webhook</h3>
+            <p class="text-muted mb-4 mt-2">Send and receive generic payloads</p>
+            <button class="btn btn-secondary w-full">Coming Soon</button>
+          </div>
+          <div class="card text-center">
+            <h3 style="color:#fff; font-size:16px;">Google Sheets</h3>
+            <p class="text-muted mb-4 mt-2">Sync conversational flows to sheets</p>
+            <button class="btn btn-secondary w-full">Coming Soon</button>
+          </div>
+          <div class="card text-center">
+            <h3 style="color:#fff; font-size:16px;">Stripe</h3>
+            <p class="text-muted mb-4 mt-2">Process payments within the chat</p>
+            <button class="btn btn-secondary w-full">Coming Soon</button>
+          </div>
+          <div class="card text-center">
+            <h3 style="color:#fff; font-size:16px;">OpenAI</h3>
+            <p class="text-muted mb-4 mt-2">Advanced custom LLM integration</p>
+            <button class="btn btn-secondary w-full">Coming Soon</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Settings Tab -->
+      <section id="settings" class="tab-pane">
+        <div class="header">
+          <h1>Settings</h1>
+          <p>System configurations and Account options</p>
+        </div>
+        <div class="bot-tabs">
+          <button class="bot-tab active">Account</button>
+          <button class="bot-tab">System</button>
+          <button class="bot-tab">API</button>
+        </div>
+
+        <div class="card" style="max-width: 600px;">
+          <form onsubmit="event.preventDefault()">
+            <h3 style="margin-bottom:16px; font-size:16px; color:#fff;">Account Details</h3>
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" value="Admin User">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" value="admin@zapflow.local">
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" placeholder="Change password...">
+            </div>
+            <hr style="border:0; border-top:1px solid var(--border-solid); margin: 24px 0;">
+            <h3 style="margin-bottom:16px; font-size:16px; color:#fff;">System Preferences</h3>
+            <div class="form-group">
+              <label>Language</label>
+              <select>
+                <option>English</option>
+                <option>Portuguese</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Timezone</label>
+              <select>
+                <option>UTC (GMT+0)</option>
+                <option>America/Sao_Paulo (GMT-3)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Theme</label>
+              <select>
+                <option>System Default</option>
+                <option selected>Dark</option>
+                <option>Light</option>
+              </select>
+            </div>
+            <hr style="border:0; border-top:1px solid var(--border-solid); margin: 24px 0;">
+            <h3 style="margin-bottom:16px; font-size:16px; color:#fff;">API Config</h3>
+            <div class="form-group">
+              <label>API Key</label>
+              <input type="text" value="zf_sec_**********************" readonly>
+            </div>
+            <div class="form-group">
+              <label>Webhook URL</label>
+              <input type="text" placeholder="https://your-domain.com/webhook/zapflow">
+            </div>
+
+            <button class="btn btn-primary mt-4">Save Changes</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
