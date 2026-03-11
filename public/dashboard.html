@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZapFlow</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <div class="logo">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+        </svg>
+        <span>ZapFlow</span>
+      </div>
+      <ul class="nav-links">
+        <li class="nav-item active" data-target="metrics">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13h2.25l2.25-9 3 18 2.25-9H21" />
+          </svg>
+          <span id="nav-dashboard">Dashboard</span>
+        </li>
+        <li class="nav-item" data-target="documents">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+          </svg>
+          <span id="nav-documents">Documents</span>
+        </li>
+        <!-- AI Agents (Hidden for now)
+        <li class="nav-item" data-target="ai-agents">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+          </svg>
+          <span id="nav-ai-agents">AI Agents</span>
+        </li>
+        -->
+        <li class="nav-item" data-target="robots">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z" />
+          </svg>
+          <span id="nav-robots">Robots</span>
+        </li>
+        <li class="nav-item" data-target="devices">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+          </svg>
+          <span id="nav-devices">Devices</span>
+        </li>
+
+        <li class="nav-item" data-target="conversations">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+          </svg>
+          <span>Conversations</span>
+        </li>
+        <li class="nav-item" data-target="settings">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span id="nav-settings">Settings</span>
+        </li>
+      </ul>
+      <div class="nav-item nav-logout">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+        </svg>
+        Logout
+      </div>
+    </nav>
+    <main class="content">
+
+      <!-- Dashboard / Metrics Tab -->
+      <section id="metrics" class="tab-pane active">
+        <div class="header">
+          <h1 id="dashboard-title">Dashboard</h1>
+          <p id="dashboard-subtitle">Overview of your system performance</p>
+        </div>
+        <div class="cards-grid" id="metrics-container">
+          <div class="card">
+            <h3 id="metric-title-conversations">Conversations</h3>
+            <div class="value" id="metric-convos">0</div>
+            <p class="text-muted mt-2" style="font-size: 13px;" id="metric-convos-label">Total Conversations</p>
+          </div>
+          <div class="card">
+            <h3 id="metric-title-answered">Answered</h3>
+            <div class="value" id="metric-answered">0</div>
+            <p class="text-muted mt-2" style="font-size: 13px;" id="metric-answered-label">Answered Conversations</p>
+          </div>
+          <div class="card">
+            <h3 id="metric-title-unanswered">Unanswered</h3>
+            <div class="value" id="metric-unanswered">0</div>
+            <p class="text-muted mt-2" style="font-size: 13px;" id="metric-unanswered-label">Unanswered Conversations</p>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <div class="chart-header">
+            <h2 style="font-size: 18px; font-weight: 600;" id="chart-title">Daily Conversations</h2>
+          </div>
+          <div class="chart-placeholder" style="position: relative; height: 300px; width: 100%;">
+            <canvas id="conversationsChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Documents Tab -->
+      <section id="documents" class="tab-pane">
+        <div class="header flex-between">
+          <div>
+            <h1 id="docs-title">Documents</h1>
+            <p id="docs-subtitle">Manage your knowledge bases and resources</p>
+          </div>
+          <div class="gap-2">
+            <button class="btn btn-secondary">Filter</button>
+            <button class="btn btn-primary" onclick="document.getElementById('doc-file').click()">Import
+              Document</button>
+            <form id="upload-form" style="display:none;">
+              <input type="file" id="doc-file" accept=".pdf,.txt"
+                onchange="document.getElementById('upload-submit').click()">
+              <button type="submit" id="upload-submit"></button>
+            </form>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="search-input-wrapper" style="display: flex; align-items: center; gap: 8px; border: 1px solid var(--border-solid); padding: 8px 12px; border-radius: 6px;">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+            <input type="text" placeholder="Search documents..." id="docs-search-input" style="border: none; outline: none; background: transparent; color: var(--text-primary); width: 100%;">
+          </div>
+        </div>
+
+        <div class="list-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th id="th-name">Name</th>
+                <th id="th-type">Type</th>
+                <th id="th-size">Size</th>
+                <th id="th-chars">Characters</th>
+                <th id="th-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="docs-list">
+              <!-- Filled via JS -->
+            </tbody>
+          </table>
+          <div class="pagination">
+            <div class="pagination-info" id="docs-pagination-info">Showing 1 to 10 of 25 results</div>
+            <div class="pagination-controls gap-2">
+              <button class="btn btn-secondary" id="btn-prev">Previous</button>
+              <button class="btn btn-secondary" id="btn-next">Next</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI Agents Tab -->
+      <section id="ai-agents" class="tab-pane">
+        <div id="ai-agents-list-view">
+          <div class="header flex-between">
+            <div>
+              <h1 id="ai-agents-title">AI Agents</h1>
+              <p id="ai-agents-subtitle">Create intelligent agents powered by LLMs</p>
+            </div>
+            <button class="btn btn-primary" id="btn-new-ai-agent">Create AI Agent</button>
+          </div>
+          <div class="card mb-4" style="background: rgba(59, 130, 246, 0.1); border-color: var(--primary);">
+            <p style="color: #fff; font-weight:500;">AI Agents use Large Language Models to answer user queries intelligently based on your documents.</p>
+          </div>
+          <div class="list-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Agent Name</th>
+                  <th>Device</th>
+                  <th>Provider</th>
+                  <th>Knowledge Base</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="ai-agents-table-body">
+                <!-- Filled via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="ai-agent-edit-view" class="hidden">
+          <div class="header flex-between">
+            <div>
+              <h1 id="ai-agent-form-title">Edit AI Agent</h1>
+              <button class="btn btn-secondary mt-2" id="btn-back-ai-agents">← Back to List</button>
+            </div>
+            <button class="btn btn-primary" id="btn-save-ai-agent">Save Agent</button>
+          </div>
+
+          <div class="card">
+            <div class="bot-tabs" id="ai-agent-tabs">
+              <button class="bot-tab active" data-target="ai-agent-details">Details</button>
+              <button class="bot-tab" data-target="ai-agent-knowledge">Knowledge Base</button>
+            </div>
+
+            <!-- Details -->
+            <div id="ai-agent-details" class="bot-section active">
+              <div class="form-group">
+                <label>Agent Name</label>
+                <input type="text" id="ai-agent-name" placeholder="e.g. Sales Assistant">
+              </div>
+              <div class="form-group">
+                <label>Instructions (System Prompt)</label>
+                <textarea id="ai-agent-instructions" rows="8" placeholder="Define how the AI should behave..."></textarea>
+                <p class="text-muted" style="font-size:12px;">These instructions define the personality and rules for the AI.</p>
+              </div>
+              <div class="form-group">
+                <label>AI Provider</label>
+                <select id="ai-agent-provider" class="w-full">
+                  <option value="gemini">Google Gemini (Recommended)</option>
+                  <option value="openai">OpenAI (GPT-3.5/4)</option>
+                  <option value="cloud">Cloud AI (Generic)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Connected Device</label>
+                <select id="ai-agent-device-select" class="w-full">
+                  <option value="">Select a device...</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Knowledge Base -->
+            <div id="ai-agent-knowledge" class="bot-section">
+              <p class="text-muted mb-4">Select documents to train this AI Agent. The AI will use these files as context to answer questions.</p>
+              <div id="ai-agent-docs-list" class="docs-selection-grid">
+                <!-- Checkboxes for docs -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Robots Tab -->
+      <section id="robots" class="tab-pane">
+        <div id="robots-list-view">
+          <div class="header flex-between">
+            <div>
+              <h1 id="robots-title">Robots</h1>
+              <p id="robots-subtitle">Manage your automated responders</p>
+            </div>
+            <button class="btn btn-primary" id="btn-new-robot">Create Robot</button>
+          </div>
+          <div class="list-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th id="th-robot-name">Name</th>
+                  <th id="th-robot-idname">ID Name</th>
+                  <th id="th-robot-device">Device</th>
+                  <th id="th-robot-active">Active</th>
+                  <th id="th-robot-actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="robots-table-body">
+                <!-- Filled via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="robot-edit-view" class="hidden">
+          <div class="header flex-between">
+            <div>
+              <h1 id="robot-form-title">Edit Robot</h1>
+              <button class="btn btn-secondary mt-2" id="btn-back-robots">← Back to List</button>
+            </div>
+            <button class="btn btn-primary" id="btn-save-robot">Save Robot</button>
+          </div>
+
+          <div class="card">
+            <div class="bot-tabs" id="robot-tabs">
+              <button class="bot-tab active" data-target="robot-details">Details</button>
+              <button class="bot-tab" data-target="robot-qa">Questions & Answers</button>
+            </div>
+
+            <!-- Details -->
+            <div id="robot-details" class="bot-section active">
+              <div class="form-group">
+                <label>Name (Internal)</label>
+                <input type="text" id="robot-name" placeholder="e.g. Sales Bot A">
+              </div>
+              <div class="form-group">
+                <label>Identification Name (Optional)</label>
+                <input type="text" id="robot-idname" placeholder="e.g. Fit Assistant">
+                <p class="text-muted" style="font-size:12px;">Name the robot can tell the customer if asked.</p>
+              </div>
+              <div class="form-group">
+                <label>Device Selection</label>
+                <select id="robot-device-select" class="w-full">
+                  <option value="">Select a device...</option>
+                </select>
+              </div>
+              
+              <div class="form-group toggle-group">
+                <label>
+                  <input type="checkbox" id="robot-handoff">
+                  <span style="margin-left:8px;">Allow Handoff</span>
+                </label>
+                <p class="text-muted" style="font-size:12px; margin-left:24px;">Allows transfer to human agent when requested.</p>
+              </div>
+
+              <div class="form-group toggle-group">
+                <label>
+                  <input type="checkbox" id="robot-split-messages">
+                  <span style="margin-left:8px;">Line Break Messages</span>
+                </label>
+                <p class="text-muted" style="font-size:12px; margin-left:24px;">Split long messages into smaller parts.</p>
+              </div>
+
+              <div class="form-group toggle-group">
+                <label>
+                  <input type="checkbox" id="robot-save-payments">
+                  <span style="margin-left:8px;">Save Payments</span>
+                </label>
+                <p class="text-muted" style="font-size:12px; margin-left:24px;">Save initiated and completed payments to database.</p>
+              </div>
+              
+              <div class="form-group toggle-group">
+                <label>
+                  <input type="checkbox" id="robot-active" checked>
+                  <span style="margin-left:8px;">Active</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Q&A -->
+            <div id="robot-qa" class="bot-section">
+              <div class="flex-between mb-4">
+                <div>
+                  <h3 style="font-size:16px; color:var(--text-primary);">Questions & Answers</h3>
+                  <p class="text-muted">Use questions and answers to refine your robot's learning.</p>
+                </div>
+                <div class="gap-2">
+                  <button class="btn btn-secondary" id="btn-clear-qa">Clear Questions</button>
+                  <button class="btn btn-primary" id="btn-add-qa">Add Question</button>
+                </div>
+              </div>
+              
+              <div id="qa-list-container" class="qa-container">
+                <!-- QA Items -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Devices Tab -->
+      <section id="devices" class="tab-pane">
+        <div class="header flex-between">
+          <div>
+            <h1 id="devices-title">Devices</h1>
+            <p id="devices-subtitle">Manage connected WhatsApp numbers</p>
+          </div>
+          <button class="btn btn-primary" id="btn-connect-device">Connect Device</button>
+        </div>
+
+        <div class="list-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th id="th-device-name">Device Name</th>
+                <th id="th-device-status">Connection Status</th>
+                <th id="th-device-active">Last Active</th>
+                <th id="th-device-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="devices-table-body">
+            </tbody>
+          </table>
+        </div>
+
+        <div id="qr-modal" class="hidden mt-4">
+          <div class="card text-center device-card">
+            <h3 id="qr-modal-title">Connect WhatsApp Device</h3>
+            
+            <div class="form-group" style="text-align: left; margin: 16px 0;">
+              <label>Device Name</label>
+              <input type="text" id="device-name-input" placeholder="e.g. Sales WhatsApp">
+            </div>
+
+            <div class="qr-container" id="qr-container">
+              <div class="placeholder">Loading QR Code...</div>
+              <img id="qr-image" style="display:none;" />
+            </div>
+            <div class="mt-2" id="qr-status">Status: Waiting for scan...</div>
+            <div class="mt-1" id="qr-session-name">Session Name: -</div>
+            <div class="mt-3 gap-2" style="display:flex; justify-content:center;">
+              <button class="btn btn-secondary" id="btn-refresh-qr">Refresh QR Code</button>
+              <button class="btn btn-secondary" id="btn-close-qr">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- Conversations Tab -->
+      <section id="conversations" class="tab-pane">
+        <div class="header">
+          <h1 id="conversations-title">Conversations</h1>
+          <p id="conversations-subtitle">Manage customer chats and history.</p>
+        </div>
+        <div class="app-layout" style="display:flex; height: 600px; gap: 24px;">
+            <div id="chat-sidebar" class="sidebar-chat" style="width: 300px; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-solid); overflow-y: auto;">
+                <div class="p-4 border-b border-solid" style="padding:16px; border-bottom: 1px solid var(--border-solid);">
+                    <input type="text" placeholder="Search..." class="w-full">
+                </div>
+                <div id="conversation-list">
+                    <!-- List items via JS -->
+                </div>
+            </div>
+            <div id="chat-area-wrapper" class="chat-area hidden-mobile" style="flex:1; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-solid); display:flex; flex-direction:column;">
+                <div id="chat-header" style="padding:16px; border-bottom: 1px solid var(--border-solid); font-weight:bold; display: flex; align-items: center; gap: 10px;">
+                    <button id="btn-back-conversations" class="btn btn-secondary btn-sm" style="display: none;">← Back</button>
+                    <span id="chat-header-title">Select a conversation</span>
+                </div>
+                <div id="chat-messages" style="flex:1; padding:16px; overflow-y: auto; display:flex; flex-direction:column; gap:12px;">
+                    <!-- Messages via JS -->
+                </div>
+                <div style="padding:16px; border-top: 1px solid var(--border-solid);">
+                    <input type="text" placeholder="Type a message..." class="w-full" disabled>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <!-- Settings Tab -->
+      <section id="settings" class="tab-pane">
+        <div class="header">
+          <h1 id="settings-title">Settings</h1>
+          <p id="settings-subtitle">System configurations and Account options</p>
+        </div>
+
+        <div class="settings-container" style="display: flex; flex-direction: column; gap: 24px;">
+          
+          <!-- Account Details Card -->
+          <div class="card" style="max-width: 800px;">
+            <h3 style="margin-bottom:16px; font-size:18px; font-weight:600; color:var(--text-primary);" id="settings-account-title">Account Details</h3>
+            <form id="settings-account-form" onsubmit="event.preventDefault()">
+              <div class="form-group">
+                <label id="label-email">Email</label>
+                <input type="email" id="settings-email" readonly style="background: var(--bg-secondary); cursor: not-allowed;">
+              </div>
+              <div class="form-group">
+                <label id="label-password">Password</label>
+                <input type="password" placeholder="Change password..." id="settings-password">
+              </div>
+            </form>
+          </div>
+
+          <!-- System Preferences Card -->
+          <div class="card" style="max-width: 800px;">
+            <h3 style="margin-bottom:16px; font-size:18px; font-weight:600; color:var(--text-primary);" id="settings-system-title">System Preferences</h3>
+            <form id="settings-system-form" onsubmit="event.preventDefault()">
+              <div class="form-group">
+                <label id="label-language">Language</label>
+                <select id="language-select" class="w-full">
+                  <option value="en">English</option>
+                  <option value="ptBR">Português (Brasil)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label id="label-timezone">Timezone</label>
+                <select id="timezone-select" class="w-full">
+                  <option value="UTC">UTC (GMT+0)</option>
+                  <option value="America/Sao_Paulo">America/Sao_Paulo (GMT-3)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label id="label-theme">Theme</label>
+                <select id="theme-select" class="w-full">
+                  <option value="system">System Default</option>
+                  <option value="dark">Dark Mode</option>
+                  <option value="light">Light Mode</option>
+                </select>
+              </div>
+              <button class="btn btn-primary mt-4" id="btn-save-settings">Save Changes</button>
+            </form>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,488 +1,393 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZapFlow</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>ZapFlow - Agente IA para WhatsApp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/landing.css">
+  <style>
+      /* Quick inline override for visual validation, will move to css/landing.css later */
+      :root {
+          --bg-main: #07060f;
+          --bg-sec: #0d0b1e;
+          --primary: #6c3ff5;
+          --primary-glow: #a259ff;
+          --accent: #25d366;
+          --text: #f0ecff;
+          --text-muted: #8b82b0;
+      }
+  </style>
 </head>
-
 <body>
-  <div class="app-container">
-    <nav class="sidebar">
+  
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
       <div class="logo">
-        <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-        </svg>
+        <div class="logo-icon">⚡</div>
         <span>ZapFlow</span>
       </div>
-      <ul class="nav-links">
-        <li class="nav-item active" data-target="metrics">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13h2.25l2.25-9 3 18 2.25-9H21" />
-          </svg>
-          Dashboard
-        </li>
-        <li class="nav-item" data-target="documents">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-          </svg>
-          Documents
-        </li>
-        <li class="nav-item" data-target="bots">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z" />
-          </svg>
-          Robots
-        </li>
-        <li class="nav-item" data-target="devices">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-          </svg>
-          Devices
-        </li>
-        <li class="nav-item" data-target="integrations">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
-          </svg>
-          Integrations
-        </li>
-        <li class="nav-item" data-target="settings">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-          Settings
-        </li>
-      </ul>
-      <div class="nav-item nav-logout">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-        </svg>
-        Logout
+      <div class="nav-menu">
+        <a href="#features">Recursos</a>
+        <a href="#how-it-works">Como Funciona</a>
+        <a href="#pricing">Preços</a>
+        <a href="#" id="nav-dashboard-btn">Dashboard</a>
+        <a href="#" class="btn btn-primary require-auth-btn">Começar Agora</a>
       </div>
-    </nav>
-    <main class="content">
+    </div>
+  </nav>
 
-      <!-- Dashboard / Metrics Tab -->
-      <section id="metrics" class="tab-pane active">
-        <div class="header">
-          <h1>Dashboard</h1>
-          <p>Overview of your system performance</p>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-glow"></div>
+    <div class="container hero-container">
+      <div class="hero-content fade-up">
+        <div class="badges">
+          <span class="badge-pulse">● Agente IA para WhatsApp</span>
         </div>
-        <div class="cards-grid" id="metrics-container">
-          <div class="card">
-            <h3>Conversations</h3>
-            <div class="value" id="metric-convos">0</div>
-            <p class="text-muted mt-2" style="font-size: 13px;">No data available yet</p>
-          </div>
-          <div class="card">
-            <h3>Revenue</h3>
-            <div class="value" id="metric-revenue">$0</div>
-            <p class="text-muted mt-2" style="font-size: 13px;">No data available yet</p>
-          </div>
-          <div class="card">
-            <h3>Started Sales</h3>
-            <div class="value" id="metric-started-sales">0</div>
-            <p class="text-muted mt-2" style="font-size: 13px;">No data available yet</p>
-          </div>
-          <div class="card">
-            <h3>Completed Sales</h3>
-            <div class="value" id="metric-completed-sales">0</div>
-            <p class="text-muted mt-2" style="font-size: 13px;">No data available yet</p>
-          </div>
+        <h1>Potencialize seu WhatsApp com <span class="shimmer-text">Inteligência Artificial</span></h1>
+        <p class="subheadline">
+          Automatize seu atendimento, vendas e suporte 24/7 com a IA mais avançada do mercado.
+        </p>
+        <div class="hero-buttons">
+            <a href="#" class="btn btn-primary btn-lg glow-hover require-auth-btn">Testar Grátis</a>
+            <a href="#features" class="btn btn-outline btn-lg">Ver Demo</a>
         </div>
-
-        <div class="chart-container">
-          <div class="chart-header">
-            <h2 style="font-size: 18px; font-weight: 600;">Started vs Completed Sales</h2>
-            <select id="chart-filter" style="width: 120px;">
-              <option value="7">7 days</option>
-              <option value="30">30 days</option>
-              <option value="90">90 days</option>
-            </select>
-          </div>
-          <div class="chart-placeholder">
-            Chart data will appear here
-          </div>
+        
+        <div class="social-proof">
+            <div class="avatars">
+                <img src="https://i.pravatar.cc/100?img=1" alt="User">
+                <img src="https://i.pravatar.cc/100?img=2" alt="User">
+                <img src="https://i.pravatar.cc/100?img=3" alt="User">
+                <img src="https://i.pravatar.cc/100?img=4" alt="User">
+            </div>
+            <div class="proof-text">
+                <div class="stars">★★★★★</div>
+                <span>+1.000 empresas usam</span>
+            </div>
         </div>
-      </section>
-
-      <!-- Documents Tab -->
-      <section id="documents" class="tab-pane">
-        <div class="header flex-between">
-          <div>
-            <h1>Documents</h1>
-            <p>Manage your knowledge bases and resources</p>
-          </div>
-          <div class="gap-2">
-            <button class="btn btn-secondary">Filter</button>
-            <button class="btn btn-primary" onclick="document.getElementById('doc-file').click()">Import
-              Document</button>
-            <form id="upload-form" style="display:none;">
-              <input type="file" id="doc-file" accept=".pdf,.txt"
-                onchange="document.getElementById('upload-submit').click()">
-              <button type="submit" id="upload-submit"></button>
-            </form>
-          </div>
-        </div>
-
-        <div class="filter-bar">
-          <div class="search-input-wrapper">
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" width="18" height="18">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-            </svg>
-            <input type="text" placeholder="Search documents...">
-          </div>
-        </div>
-
-        <div class="list-container">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Size</th>
-                <th>Characters</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="docs-list">
-              <!-- Filled via JS -->
-            </tbody>
-          </table>
-          <div class="pagination">
-            <div class="pagination-info">Showing 1 to 10 of 25 results</div>
-            <div class="pagination-controls gap-2">
-              <button class="btn btn-secondary">Previous</button>
-              <button class="btn btn-secondary">Next</button>
+      </div>
+      <div class="hero-image fade-up delay-200">
+        <div class="chat-mockup">
+          <div class="chat-header">
+            <div class="chat-avatar">ZF</div>
+            <div class="chat-info">
+                <span class="name">ZapFlow IA</span>
+                <span class="status">Online</span>
             </div>
           </div>
-        </div>
-      </section>
-
-      <!-- Robots Tab -->
-      <section id="bots" class="tab-pane">
-        <div id="bots-list-view">
-          <div class="header flex-between">
-            <div>
-              <h1>Robots</h1>
-              <p>Manage your automated responders</p>
-            </div>
-            <div class="gap-2">
-              <button class="btn btn-secondary">Filter</button>
-              <button class="btn btn-secondary">Import JSON</button>
-              <button class="btn btn-primary" id="btn-new-bot">Create New Robot</button>
-            </div>
-          </div>
-
-          <div class="list-container">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Role</th>
-                  <th>Description</th>
-                  <th>Published</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="bots-table-body">
-                <!-- Filled via JS -->
-              </tbody>
-            </table>
+          <div class="chat-body">
+             <!-- Animated bubbles injected via JS or CSS -->
+             <div class="chat-bubble received">Olá! Como posso ajudar sua empresa hoje?</div>
+             <div class="chat-bubble sent">Quero automatizar meu suporte.</div>
+             <div class="chat-bubble received">Perfeito! Com o ZapFlow você atende 24h por dia.</div>
+             <div class="typing-indicator">
+                 <span></span><span></span><span></span>
+             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </header>
 
-        <div id="bot-edit-view" class="hidden">
-          <div class="header flex-between">
-            <div>
-              <h1 id="bot-form-title">Create Robot</h1>
-            </div>
-            <button class="btn btn-secondary" id="btn-back-bots">Back to Robots</button>
-          </div>
-          <div class="bot-tabs">
-            <button class="bot-tab active" data-target="bot-details">Details</button>
-            <button class="bot-tab" data-target="bot-instructions">Instructions</button>
-            <button class="bot-tab" data-target="bot-docs">Documents</button>
-            <button class="bot-tab" data-target="bot-qa">Q&A</button>
-            <button class="bot-tab" data-target="bot-integrations">Integrations</button>
-            <button class="bot-tab" data-target="bot-chat">Chat</button>
-          </div>
-
-          <div class="card bot-form-container border-0">
-            <form id="bot-form">
-              <!-- Details -->
-              <div id="bot-details" class="bot-section active">
-                <input type="hidden" id="bot-id">
-                <div class="form-group">
-                  <label>Bot Name</label>
-                  <input type="text" id="bot-name" required>
-                </div>
-                <div class="form-group">
-                  <label>Identification Name</label>
-                  <input type="text" id="bot-idname" required>
-                </div>
-                <div class="form-group">
-                  <label>Description</label>
-                  <textarea id="bot-desc" rows="3"></textarea>
-                </div>
-                <div class="form-group toggle-group">
-                  <label class="toggle-switch">
-                    <input type="checkbox" id="bot-human">
-                    <span class="slider"></span>
-                  </label>
-                  <span>Allow human takeover (Stop responding when client asks for human support)</span>
-                </div>
-                <div class="form-group toggle-group">
-                  <label class="toggle-switch">
-                    <input type="checkbox" id="bot-split">
-                    <span class="slider"></span>
-                  </label>
-                  <span>Break messages into smaller parts</span>
-                </div>
-                <div class="form-group toggle-group">
-                  <label class="toggle-switch">
-                    <input type="checkbox" id="bot-active" checked>
-                    <span class="slider"></span>
-                  </label>
-                  <span>Active Bot</span>
-                </div>
-              </div>
-
-              <!-- Instructions -->
-              <div id="bot-instructions" class="bot-section">
-                <div class="form-group">
-                  <label>Bot Prompt / Instructions</label>
-                  <textarea id="bot-prompt" rows="10"
-                    placeholder="Enter instructions here. If no Q&A matches, the bot will fall back to using this context."></textarea>
-                </div>
-              </div>
-
-              <!-- Q&A -->
-              <div id="bot-qa" class="bot-section">
-                <div class="qa-form">
-                  <div class="form-group">
-                    <input type="text" id="qa-question" placeholder="Question (e.g. price)">
-                  </div>
-                  <div class="form-group">
-                    <input type="text" id="qa-answer" placeholder="Answer (e.g. Our websites start at R$200)">
-                  </div>
-                  <button type="button" class="btn btn-secondary w-full" id="btn-add-qa">Add Q&A</button>
-                </div>
-                <div class="list-container mt-4">
-                  <table class="data-table">
-                    <thead>
-                      <tr>
-                        <th>Question</th>
-                        <th>Answer</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody id="qa-list"></tbody>
-                  </table>
-                </div>
-              </div>
-
-              <!-- Documents -->
-              <div id="bot-docs" class="bot-section">
-                <p class="text-muted mb-4">Attach documents to form the knowledge base.</p>
-                <div id="bot-docs-select-list">
-                  <!-- Filled via JS checkboxes -->
-                </div>
-              </div>
-
-              <!-- Integrations -->
-              <div id="bot-integrations" class="bot-section">
-                <p class="text-muted mb-4">Configure Webhooks or External API accesses.</p>
-                <div class="card text-center" style="padding:40px; border-style:dashed;">
-                  <p>Integrations are not available yet. This feature will be released soon.</p>
-                </div>
-              </div>
-
-              <!-- Chat Preview -->
-              <div id="bot-chat" class="bot-section">
-                <p class="text-muted mb-4">Test your robot responses in real-time.</p>
-                <div class="card text-center" style="padding:40px; border-style:dashed;">
-                  <p>Chat Sandbox Coming Soon</p>
-                </div>
-              </div>
-
-              <div class="form-actions">
-                <button type="submit" class="btn btn-primary" id="btn-save-bot">Save Bot</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <!-- Devices Tab -->
-      <section id="devices" class="tab-pane">
-        <div class="header flex-between">
-          <div>
-            <h1>Devices</h1>
-            <p>Manage connected WhatsApp numbers</p>
-          </div>
-          <button class="btn btn-primary" id="btn-connect-device">Connect Device</button>
-        </div>
-
-        <div class="list-container">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Device</th>
-                <th>Phone Number</th>
-                <th>Status</th>
-                <th>Last Activity</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Main WhatsApp API</td>
-                <td><span class="text-muted">Loading...</span></td>
-                <td><span class="status-badge" id="device-status">Loading</span></td>
-                <td>Just now</td>
-                <td>
-                  <button class="btn btn-secondary" id="btn-show-qr">Show QR</button>
-                  <button class="btn btn-secondary" id="btn-reconnect">Reconnect</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div id="qr-modal" class="hidden mt-4">
-          <div class="card text-center device-card">
-            <h3>Scan to Connect</h3>
-            <div class="qr-container" id="qr-container">
-              <div class="placeholder">Loading QR Code...</div>
-              <img id="qr-image" style="display:none;" />
-            </div>
-            <button class="btn btn-secondary mt-4 w-full" id="btn-close-qr">Close</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Integrations Tab -->
-      <section id="integrations" class="tab-pane">
-        <div class="header">
-          <h1>Integrations</h1>
-          <p>Connect ZapFlow with your favorite tools</p>
-        </div>
-        <div class="card mb-4" style="background: rgba(59, 130, 246, 0.1); border-color: var(--primary);">
-          <p style="color: #fff; font-weight:500;">Integrations are not available yet. This feature will be released
-            soon.</p>
-        </div>
-        <div class="cards-grid">
-          <div class="card text-center">
-            <h3 style="color:#fff; font-size:16px;">WhatsApp API</h3>
-            <p class="text-muted mb-4 mt-2">Official Meta Graph API setup</p>
-            <button class="btn btn-secondary w-full">Coming Soon</button>
-          </div>
-          <div class="card text-center">
-            <h3 style="color:#fff; font-size:16px;">Webhook</h3>
-            <p class="text-muted mb-4 mt-2">Send and receive generic payloads</p>
-            <button class="btn btn-secondary w-full">Coming Soon</button>
-          </div>
-          <div class="card text-center">
-            <h3 style="color:#fff; font-size:16px;">Google Sheets</h3>
-            <p class="text-muted mb-4 mt-2">Sync conversational flows to sheets</p>
-            <button class="btn btn-secondary w-full">Coming Soon</button>
-          </div>
-          <div class="card text-center">
-            <h3 style="color:#fff; font-size:16px;">Stripe</h3>
-            <p class="text-muted mb-4 mt-2">Process payments within the chat</p>
-            <button class="btn btn-secondary w-full">Coming Soon</button>
-          </div>
-          <div class="card text-center">
-            <h3 style="color:#fff; font-size:16px;">OpenAI</h3>
-            <p class="text-muted mb-4 mt-2">Advanced custom LLM integration</p>
-            <button class="btn btn-secondary w-full">Coming Soon</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Settings Tab -->
-      <section id="settings" class="tab-pane">
-        <div class="header">
-          <h1>Settings</h1>
-          <p>System configurations and Account options</p>
-        </div>
-        <div class="bot-tabs">
-          <button class="bot-tab active">Account</button>
-          <button class="bot-tab">System</button>
-          <button class="bot-tab">API</button>
-        </div>
-
-        <div class="card" style="max-width: 600px;">
-          <form onsubmit="event.preventDefault()">
-            <h3 style="margin-bottom:16px; font-size:16px; color:#fff;">Account Details</h3>
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" value="Admin User">
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" value="admin@zapflow.local">
-            </div>
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" placeholder="Change password...">
-            </div>
-            <hr style="border:0; border-top:1px solid var(--border-solid); margin: 24px 0;">
-            <h3 style="margin-bottom:16px; font-size:16px; color:#fff;">System Preferences</h3>
-            <div class="form-group">
-              <label>Language</label>
-              <select>
-                <option>English</option>
-                <option>Portuguese</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Timezone</label>
-              <select>
-                <option>UTC (GMT+0)</option>
-                <option>America/Sao_Paulo (GMT-3)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Theme</label>
-              <select>
-                <option>System Default</option>
-                <option selected>Dark</option>
-                <option>Light</option>
-              </select>
-            </div>
-            <hr style="border:0; border-top:1px solid var(--border-solid); margin: 24px 0;">
-            <h3 style="margin-bottom:16px; font-size:16px; color:#fff;">API Config</h3>
-            <div class="form-group">
-              <label>API Key</label>
-              <input type="text" value="zf_sec_**********************" readonly>
-            </div>
-            <div class="form-group">
-              <label>Webhook URL</label>
-              <input type="text" placeholder="https://your-domain.com/webhook/zapflow">
-            </div>
-
-            <button class="btn btn-primary mt-4">Save Changes</button>
-          </form>
-        </div>
-      </section>
-
-    </main>
+  <!-- Marquee -->
+  <div class="marquee-container">
+      <div class="marquee-content">
+          <div class="marquee-item">⚡ Atendimento 24/7</div>
+          <div class="marquee-item">🤖 IA Generativa</div>
+          <div class="marquee-item">🚀 Vendas Automáticas</div>
+          <div class="marquee-item">🔒 Segurança Total</div>
+          <div class="marquee-item">📈 Analytics em Tempo Real</div>
+          <div class="marquee-item">⚡ Atendimento 24/7</div>
+          <div class="marquee-item">🤖 IA Generativa</div>
+          <div class="marquee-item">🚀 Vendas Automáticas</div>
+      </div>
   </div>
-  <script src="js/app.js"></script>
-</body>
 
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container features-layout">
+      <div class="features-text sticky-content">
+        <div class="section-tag">RECURSOS</div>
+        <h2>Tudo o que você precisa para escalar</h2>
+        <p>Uma suite completa de ferramentas para transformar seu WhatsApp em uma máquina de vendas.</p>
+        
+        <div class="features-list-cards">
+            <div class="feature-list-item active">
+                <div class="f-icon">💬</div>
+                <div class="f-content">
+                    <h3>Conversas Naturais</h3>
+                    <p>IA que entende contexto e intenção, não apenas palavras-chave.</p>
+                </div>
+            </div>
+            <div class="feature-list-item">
+                <div class="f-icon">🔄</div>
+                <div class="f-content">
+                    <h3>Integração Simples</h3>
+                    <p>Conecte seu WhatsApp em segundos via QR Code.</p>
+                </div>
+            </div>
+            <div class="feature-list-item">
+                <div class="f-icon">📊</div>
+                <div class="f-content">
+                    <h3>Dashboard Intuitivo</h3>
+                    <p>Acompanhe métricas e conversas em tempo real.</p>
+                </div>
+            </div>
+             <div class="feature-list-item">
+                <div class="f-icon">🧠</div>
+                <div class="f-content">
+                    <h3>Treinamento Customizado</h3>
+                    <p>Carregue seus PDFs e treine a IA com seu conteúdo.</p>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="features-visual">
+          <!-- Dynamic visual representation could go here, for now using a static card or keeping it simple -->
+           <div class="visual-card-glass">
+               <div class="floating-icon" style="top:20%; left:10%">🚀</div>
+               <div class="floating-icon" style="top:60%; right:10%">🤖</div>
+               <div class="visual-content-mock">
+                   <div class="mock-line" style="width: 80%"></div>
+                   <div class="mock-line" style="width: 60%"></div>
+                   <div class="mock-line" style="width: 90%"></div>
+               </div>
+           </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+      <div class="container">
+          <div class="benefits-grid">
+              <div class="benefit-card fade-up">
+                  <div class="benefit-icon">💬</div>
+                  <h3>Conversas naturais e inteligentes</h3>
+                  <p>Sua inteligência artificial será capaz de qualificar leads, agendar reuniões, tirar dúvidas e direcionar clientes ao checkout ou ao vendedor adequado, sempre interagindo de forma precisa, clara e natural. Os clientes sentem que estão falando com alguém que realmente entende o que eles precisam.</p>
+              </div>
+              <div class="benefit-card fade-up delay-200">
+                  <div class="benefit-icon">⚡</div>
+                  <h3>Enquanto sua equipe está Off, os Agentes IA estão On</h3>
+                  <p>Com agentes de IA trabalhando 24 horas por dia, sua empresa nunca perde oportunidades. Mesmo fora do horário comercial, os clientes continuam sendo atendidos, tirando dúvidas e iniciando conversas que podem se transformar em vendas.</p>
+              </div>
+              <div class="benefit-card fade-up delay-400">
+                  <div class="benefit-icon">🤖</div>
+                  <h3>Automação inteligente de atendimento</h3>
+                  <p>Centralize e automatize o atendimento do seu negócio com agentes de IA treinados para responder perguntas frequentes, capturar informações importantes dos clientes e encaminhar cada conversa para o fluxo correto. Tudo acontece de forma rápida, organizada e sem sobrecarregar sua equipe.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="how-it-works">
+      <div class="container">
+          <div class="section-header center">
+              <h2>Como Funciona</h2>
+              <p>Três passos simples para a revolução do seu atendimento.</p>
+          </div>
+          <div class="steps-grid">
+              <div class="step-card">
+                  <div class="step-number">01</div>
+                  <div class="step-icon">🔗</div>
+                  <h3>Conecte</h3>
+                  <p>Escaneie o QR Code e conecte seu número de WhatsApp instantaneamente.</p>
+              </div>
+              <div class="step-card">
+                  <div class="step-number">02</div>
+                  <div class="step-icon">📚</div>
+                  <h3>Treine</h3>
+                  <p>Faça upload dos seus materiais e documentos para a IA aprender sobre seu negócio.</p>
+              </div>
+              <div class="step-card">
+                  <div class="step-number">03</div>
+                  <div class="step-icon">🚀</div>
+                  <h3>Automatize</h3>
+                  <p>Ative seu robô e veja ele atender clientes e fechar vendas 24h por dia.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Planos Flexíveis</h2>
+        <p>Escolha o plano ideal para o tamanho do seu negócio.</p>
+      </div>
+      <div class="pricing-grid">
+        <!-- Basic -->
+        <div class="pricing-card">
+          <h3>Básico</h3>
+          <div class="price">R$ 29<span>/mês</span></div>
+          <ul class="features-list">
+            <li>✅ 1 Dispositivo</li>
+            <li>✅ 1 Robô</li>
+            <li>✅ 5 Documentos</li>
+            <li>✅ Suporte Básico</li>
+          </ul>
+          <button class="btn btn-outline w-full" onclick="selectPlan('basic')">Escolher Plano</button>
+        </div>
+        <!-- Pro -->
+        <div class="pricing-card popular">
+          <div class="badge-popular">Mais Popular</div>
+          <h3>Profissional</h3>
+          <div class="price">R$ 44<span>/mês</span></div>
+          <ul class="features-list">
+            <li>✅ 3 Dispositivos</li>
+            <li>✅ 3 Robôs</li>
+            <li>✅ 20 Documentos</li>
+            <li>✅ Suporte Prioritário</li>
+          </ul>
+          <button class="btn btn-primary w-full" onclick="selectPlan('professional')">Escolher Plano</button>
+        </div>
+        <!-- Premium -->
+        <div class="pricing-card">
+          <h3>Premium</h3>
+          <div class="price">R$ 59<span>/mês</span></div>
+          <ul class="features-list">
+            <li>✅ Dispositivos Ilimitados</li>
+            <li>✅ Robôs Ilimitados</li>
+            <li>✅ Documentos Ilimitados</li>
+            <li>✅ Suporte 24/7</li>
+          </ul>
+          <button class="btn btn-outline w-full" onclick="selectPlan('premium')">Escolher Plano</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+      <div class="container">
+          <div class="section-header center">
+              <h2>O que dizem nossos clientes</h2>
+          </div>
+          <div class="testimonials-grid">
+              <div class="testi-card">
+                  <div class="stars">★★★★★</div>
+                  <p>"O ZapFlow revolucionou nosso atendimento. Reduzimos o tempo de resposta em 90%!"</p>
+                  <div class="author">
+                      <div class="author-avatar" style="background: #ff5b5b">MR</div>
+                      <div>
+                          <div class="author-name">Mariana Reis</div>
+                          <div class="author-role">CEO da TechSales</div>
+                      </div>
+                  </div>
+              </div>
+               <div class="testi-card">
+                  <div class="stars">★★★★★</div>
+                  <p>"Simplesmente incrível. A IA entende perfeitamente as dúvidas dos clientes."</p>
+                  <div class="author">
+                      <div class="author-avatar" style="background: #5bff89; color: #000">JP</div>
+                      <div>
+                          <div class="author-name">João Pedro</div>
+                          <div class="author-role">Diretor Comercial</div>
+                      </div>
+                  </div>
+              </div>
+               <div class="testi-card">
+                  <div class="stars">★★★★★</div>
+                  <p>"Melhor investimento que fizemos este ano. O suporte é excelente também."</p>
+                  <div class="author">
+                      <div class="author-avatar" style="background: #5b95ff">AL</div>
+                      <div>
+                          <div class="author-name">Ana Lima</div>
+                          <div class="author-role">Gerente de Marketing</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section class="cta-final">
+      <div class="container cta-container">
+          <div class="cta-glow"></div>
+          <h2>Pronto para transformar seu WhatsApp?</h2>
+          <p>Junte-se a milhares de empresas que já automatizaram seu sucesso.</p>
+          <a href="#" class="btn btn-primary btn-lg glow-hover require-auth-btn">Começar Agora</a>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+        <div class="footer-brand">
+            <div class="logo">
+                <div class="logo-icon">⚡</div>
+                <span>ZapFlow</span>
+            </div>
+            <p>&copy; 2024 ZapFlow. Todos os direitos reservados.</p>
+        </div>
+        <div class="footer-links">
+            <a href="#">Termos de Uso</a>
+            <a href="#">Privacidade</a>
+            <a href="#">Contato</a>
+        </div>
+    </div>
+  </footer>
+
+  <!-- Auth Modal (Kept functional) -->
+  <div id="auth-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      
+      <!-- Login Form -->
+      <div id="login-form-container">
+        <h2>Bem-vindo de volta</h2>
+        <form id="login-form">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="login-email" required>
+          </div>
+          <div class="form-group">
+            <label>Senha</label>
+            <div class="password-input-wrapper">
+              <input type="password" id="login-password" required>
+              <span class="toggle-password" onclick="togglePassword('login-password')">👁️</span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-full">Entrar</button>
+        </form>
+        <p class="mt-4 text-center">Não tem conta? <a href="#" id="switch-to-register">Registrar</a></p>
+      </div>
+
+      <!-- Register Form -->
+      <div id="register-form-container" class="hidden">
+        <h2>Criar Conta</h2>
+        <p class="mb-4 text-muted">Crie sua conta para assinar o plano <span id="selected-plan-name">Básico</span>.</p>
+        <form id="register-form">
+          <div class="form-group">
+            <label>Nome Completo</label>
+            <input type="text" id="reg-name" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="reg-email" required>
+          </div>
+          <div class="form-group">
+            <label>Senha</label>
+            <div class="password-input-wrapper">
+              <input type="password" id="reg-password" required>
+              <span class="toggle-password" onclick="togglePassword('reg-password')">👁️</span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-full">Criar Conta e Continuar</button>
+        </form>
+        <p class="mt-4 text-center">Já tem conta? <a href="#" id="switch-to-login">Entrar</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/landing.js"></script>
+</body>
 </html>
