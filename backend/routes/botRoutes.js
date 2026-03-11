@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const botController = require('../controllers/botController');
+const { verifyToken } = require('../middleware/authMiddleware');
+
+router.use(verifyToken);
 
 router.get('/', botController.getBots);
 router.post('/', botController.createBot);
