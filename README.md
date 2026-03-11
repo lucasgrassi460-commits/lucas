@@ -29,3 +29,7 @@ A self-hosted, locally running platform for WhatsApp automation with a web dashb
 - **WhatsApp Integration**: Connect via QR code, persistent session, auto-reconnect.
 - **Bot Logic**: Automatic replies based on Q&A match, fallback to bot instructions.
 - **Documents**: Upload PDF/TXT context documents for bots.
+"# Lucasamzo" 
+"# Lucasamzo" 
+"# Lucasamzo" 
+"# lucas" 
